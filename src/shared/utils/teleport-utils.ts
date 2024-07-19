@@ -2,6 +2,15 @@ import { Players, TeleportService } from "@rbxts/services";
 import { safelyGetPlayerFromName } from "./player-entity";
 import Object from "@rbxts/object-utils";
 
+/**
+ * Defers a callback.
+ * @parm Callback - a function that is called after being deffered
+ */
+
+export function Defer(func: Callback) {
+	Promise.defer<void>((resolve, reject) => resolve()).then(() => func());
+}
+
 export type TeleportData = string | number | Record<number, string>;
 
 export async function TeleportSafely(placeID: number, teleportData: string): Promise<void>;
